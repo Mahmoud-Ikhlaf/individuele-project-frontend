@@ -12,7 +12,7 @@ function Register() {
           <form className="space-y-4 md:space-y-6" action="#">
             <div>
               <label
-                for="gebruiksnaam"
+                htmlFor="gebruiksnaam"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Gebruiksnaam
@@ -23,12 +23,12 @@ function Register() {
                 id="gebruiksnaam"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Kees"
-                required="true"
+                required
               />
             </div>
             <div>
               <label
-                for="email"
+                htmlFor="email"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Email
@@ -39,12 +39,12 @@ function Register() {
                 id="email"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="kees@example.com"
-                required="true"
+                required
               />
             </div>
             <div>
               <label
-                for="wachtwoord"
+                htmlFor="wachtwoord"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Wachtwoord
@@ -55,12 +55,12 @@ function Register() {
                 id="wachtwoord"
                 placeholder="••••••••"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required="true"
+                required
               />
             </div>
             <div>
               <label
-                for="herhaal-wachtwoord"
+                htmlFor="herhaal-wachtwoord"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Herhaal wachtwoord
@@ -71,7 +71,7 @@ function Register() {
                 id="herhaal-wachtwoord"
                 placeholder="••••••••"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required="true"
+                required
               />
             </div>
             <div className="flex items-start">

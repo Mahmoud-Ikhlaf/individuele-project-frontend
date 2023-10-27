@@ -2,6 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Login() {
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(e);
+  }
+
   return (
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <div className="w-96 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -9,10 +15,10 @@ function Login() {
           <h1 className="text-xl font-bold text-center tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Inloggen
           </h1>
-          <form className="space-y-4 md:space-y-6" action="#">
+          <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
-                for="gebruiksnaam"
+                htmlFor="gebruiksnaam"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Gebruiksnaam
@@ -23,12 +29,12 @@ function Login() {
                 id="gebruiksnaam"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Kees"
-                required="true"
+                required
               />
             </div>
             <div>
               <label
-                for="email"
+                htmlFor="email"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Email
@@ -39,12 +45,12 @@ function Login() {
                 id="email"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="kees@example.com"
-                required="true"
+                required
               />
             </div>
             <div>
               <label
-                for="wachtwoord"
+                htmlFor="wachtwoord"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Wachtwoord
@@ -55,7 +61,7 @@ function Login() {
                 id="wachtwoord"
                 placeholder="••••••••"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required="true"
+                required
               />
             </div>
             <div className="flex items-start">

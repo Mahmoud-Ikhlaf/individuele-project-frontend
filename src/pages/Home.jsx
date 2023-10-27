@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 function Home() {
   return (
-    <div className='flex flex-col justify-between items-center h-screen'>
-      <div className='flex flex-col items-center justify-center grow'>
+    <div className='flex flex-col justify-center items-center h-screen'>
+      <div className='flex flex-col items-center justify-center'>
         <h1 className='font-bold text-6xl py-10'>Mahoot</h1>
         <input
           placeholder='Quiz Code'
@@ -12,7 +12,7 @@ function Home() {
           type='number'
         />
         <button
-          className='px-4 py-2 rounded-full bg-indigo-500 text-white hover:bg-indigo-600 transition duration-300'
+          className='px-4 py-2 mb-5 rounded-full bg-indigo-500 text-white hover:bg-indigo-600 transition duration-300'
           type='submit'
         >
           Speel
