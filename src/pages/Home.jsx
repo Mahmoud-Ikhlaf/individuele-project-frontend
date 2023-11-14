@@ -1,7 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useLogout from '../hooks/useLogout';
 
-function Home() {
+const Home = () => {
+  const logout = useLogout();
+  const navigate = useNavigate();
+
+  const signOut = async () => {
+    await logout();
+    navigate('/inloggen');
+  }
   return (
     <div className='flex flex-col justify-center items-center h-screen'>
       <div className='flex flex-col items-center justify-center'>
@@ -20,9 +28,11 @@ function Home() {
       </div>
 
       <div className='flex gap-2'>
-        <Link to='/Inloggen' className='text-indigo-400 text-lg hover:text-indigo-500'>Inloggen</Link>
-        <Link to='/Registreren' className='text-indigo-400 text-lg hover:text-indigo-500'>Registreren</Link>
+        <Link to='/inloggen' className='text-indigo-400 text-lg hover:text-indigo-500'>Inloggen</Link>
+        <Link to='/registreren' className='text-indigo-400 text-lg hover:text-indigo-500'>Registreren</Link>
       </div>
+
+      <button onClick={signOut}>Uitloggen</button>
     </div>
   )
 }
