@@ -1,11 +1,54 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import axios from '../api/axios';
+import useAuth from "../hooks/useAuth";
 
-function Login() {
+const Login = () => {
+  const { setAuth } = useAuth();
+  
+  const LOGIN_URL = '/auth/login';
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/dashboard";
 
-  const handleSubmit = async (e) => {
+  const [user, setUserName] = useState('');
+  const [pwd, setPasswd] = useState('');
+  const [error, setError] = useState('');
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(e);
+
+    if (!user) {
+      setError("Gebruiksnaam is verplicht!");
+      return;
+    } else if (!pwd) {
+      setError("Wachtwoord is verplicht!");
+      return;
+    }
+
+    try {
+      const response = await axios.post(LOGIN_URL, 
+        JSON.stringify({ username: user, password: pwd }),
+        {
+          headers: {'Content-Type': 'application/json'},
+          withCredentials: true
+        }
+      );
+      const accessToken = response.data.accessToken;
+      setAuth({accessToken});
+      navigate(from, { replace: true});
+    } catch (error) {
+      if (!error?.response) {
+        setError("Server is momenteel niet bereikbaar!");
+        return;
+      } else if (error.response?.status === 401) {
+        setError("Gebruiksnaam en/of wachtwoord is verkeerd!");
+        return;
+      } else {
+        setError("Login is misgegaan. Probeer het opnieuw!");
+        return;
+      }
+    }
   }
 
   return (
@@ -15,7 +58,12 @@ function Login() {
           <h1 className="text-xl font-bold text-center tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Inloggen
           </h1>
-          <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+              <span className="block sm:inline">{error}</span>
+            </div>
+          )}
+          <form className="space-y-4 md:space-y-6" onSubmit={handleLogin}>
             <div>
               <label
                 htmlFor="gebruiksnaam"
@@ -27,25 +75,9 @@ function Login() {
                 type="text"
                 name="gebruiksnaam"
                 id="gebruiksnaam"
+                onChange={(e) => setUserName(e.target.value)}
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Kees"
-                required
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="email"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="kees@example.com"
-                required
               />
             </div>
             <div>
@@ -59,15 +91,15 @@ function Login() {
                 type="password"
                 name="wachtwoord"
                 id="wachtwoord"
+                onChange={(e) => setPasswd(e.target.value)}
                 placeholder="••••••••"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
               />
             </div>
             <div className="flex items-start">
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Nog geen account?{" "}
-                <Link to='/Registreren' className="font-medium text-primary-600 hover:underline dark:text-primary-500">Klik hier</Link>
+                <Link to='/registreren' className="font-medium text-primary-600 hover:underline dark:text-primary-500">Klik hier</Link>
               </p>
             </div>
             <button
