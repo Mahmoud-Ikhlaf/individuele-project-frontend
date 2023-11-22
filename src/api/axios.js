@@ -1,12 +1,24 @@
 import axios from 'axios';
-const BASE_URL = 'http://localhost:8080/api/v1'
+
+const getBaseUrl = () => {
+    let url;
+    switch(import.meta.env.MODE) {
+      case 'production':
+        url = import.meta.env.VITE_PROD_API_URL;
+        break;
+      case 'development':
+      default:
+        url = import.meta.env.VITE_DEV_API_URL;
+    }
+    return url;
+  }
 
 export default axios.create({
-    baseURL: BASE_URL
+    baseURL: getBaseUrl()
 });
 
 export const axiosPrivate = axios.create({
-    baseURL: BASE_URL,
+    baseURL: getBaseUrl(),
     headers: { 'Content-Type' : 'application/json'},
     withCredentials: true
 });
