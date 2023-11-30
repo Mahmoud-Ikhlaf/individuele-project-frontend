@@ -10,7 +10,7 @@ COPY . .
 RUN npm run build
 RUN touch .env && \
     echo VITE_DEV_API_URL="http://localhost:8080/api/v1" >> .env && \
-    echo VITE_PROD_API_URL="http://localhost:8080/api/v1" >> .env
+    echo VITE_PROD_API_URL="http://api:8080/api/v1" >> .env
     
 EXPOSE 5000
 
