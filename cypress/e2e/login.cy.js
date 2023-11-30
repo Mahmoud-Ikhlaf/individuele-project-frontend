@@ -1,6 +1,6 @@
 describe('Test login page', () => {
     it('Geen account button test', () => {
-      cy.visit('http://localhost:5000/inloggen')
+      cy.visit('/inloggen')
       cy.contains('Klik hier').click()
       cy.url().should('include', '/registreren')
     })
@@ -8,7 +8,7 @@ describe('Test login page', () => {
 
 describe('Test login page', () => {
     it('Inloggen zonder gebruiksnaam', () => {
-        cy.visit('http://localhost:5000/inloggen')
+        cy.visit('/inloggen')
         cy.get('form').contains('Inloggen').click()
         cy.get('span').should('have.text', 'Gebruiksnaam is verplicht!')
     })
@@ -16,7 +16,7 @@ describe('Test login page', () => {
 
 describe('Test login page', () => {
     it('Inloggen zonder wachtwoord', () => {
-        cy.visit('http://localhost:5000/inloggen')
+        cy.visit('/inloggen')
         cy.get('#gebruiksnaam').type('test')
         cy.get('form').contains('Inloggen').click()
         cy.get('span').should('have.text', 'Wachtwoord is verplicht!')
