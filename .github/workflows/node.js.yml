@@ -56,8 +56,21 @@ jobs:
         wait-on: 'http://localhost:5000'
         browser: chrome
 
-  deploy:
+  sonarcloud:
     needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  deploy:
+    needs: sonarcloud
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
