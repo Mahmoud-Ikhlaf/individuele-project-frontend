@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from '../api/axios';
 
 const Register = () => {
@@ -9,6 +9,7 @@ const Register = () => {
   const [matchPwd, setMatchPwd] = useState('');
   const [error, setError] = useState('');
   const REGISTER_URL = '/auth/register';
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -38,7 +39,7 @@ const Register = () => {
         }
       );
       if (response.status === 200 && response.data.includes('succesvol')) {
-        window.location.replace("/inloggen");
+        navigate("/inloggen");
       } else if (response.status === 200 && response.data.includes('Gebruiksnaam bestaat')) {
         setError("Gebruiksnaam is al in gebruik!");
         return;

@@ -1,15 +1,7 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import useLogout from '../hooks/useLogout';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const logout = useLogout();
-  const navigate = useNavigate();
-
-  // const signOut = async () => {
-  //   await logout();
-  //   navigate('/inloggen');
-  // }
   return (
     <div className='flex flex-col justify-center items-center h-screen'>
       <div className='flex flex-col items-center justify-center'>

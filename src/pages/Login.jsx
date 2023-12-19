@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from '../api/axios';
 import useAuth from "../hooks/useAuth";
 
@@ -8,8 +8,6 @@ const Login = () => {
   
   const LOGIN_URL = '/auth/login';
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/dashboard";
 
   const [user, setUserName] = useState('');
   const [pwd, setPasswd] = useState('');
@@ -36,7 +34,7 @@ const Login = () => {
       );
       const accessToken = response.data.accessToken;
       setAuth({accessToken});
-      navigate(from, { replace: true});
+      navigate("/dashboard", { replace: true});
     } catch (error) {
       if (!error?.response) {
         setError("Server is momenteel niet bereikbaar!");
