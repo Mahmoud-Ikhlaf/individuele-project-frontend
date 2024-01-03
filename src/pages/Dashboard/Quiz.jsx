@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Button, Modal, Label, TextInput, Dropdown, DropdownItem, Alert } from 'flowbite-react';
 import { HiOutlineExclamationCircle, HiInformationCircle } from 'react-icons/hi'
 import { MdDelete, MdOutlineEdit } from "react-icons/md"
@@ -265,7 +265,7 @@ const Quiz = () => {
       <div className='relative top-40'>
         <h4>Nieuwe vraag? <Button onClick={() => newQuestion()}>Klik hier</Button></h4>
         {questions.length > 0 ? (
-          <><h4 className='text-4xl text-center mb-5'>Jouw gemaakte quizzen:</h4>
+          <><h4 className='text-4xl text-center mb-5'>Jouw gemaakte vragen:</h4>
           <Table hoverable>
             <TableHead>
               <TableHeadCell>Vraag</TableHeadCell>

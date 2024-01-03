@@ -1,14 +1,15 @@
 import React from 'react'
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Button } from 'flowbite-react';
-import useAuth from '../hooks/useAuth';
-import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useState, useEffect } from 'react';
 import { MdPlayCircle } from "react-icons/md"
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const [quizzes, setQuizzes] = useState([]);
   const axiosPrivate = useAxiosPrivate();
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
     async function getQuizzes() {
       try {
@@ -33,8 +34,8 @@ const Dashboard = () => {
     getQuizzes();
   }, [])
 
-  const playButton = () => {
-
+  const playButton = (id) => {
+    navigate("/dashboard/play/" + id);
   }
 
   return (

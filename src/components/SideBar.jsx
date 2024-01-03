@@ -12,7 +12,7 @@ const SideBar = () => {
   ];
 
   return (
-    <div className="flex sidebar-container">
+    <div className="flex sidebar-container z-50">
       <div
         className={` ${
           open ? "w-72" : "w-20 "

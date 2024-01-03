@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react'
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Button, Modal, Label, TextInput, Alert } from 'flowbite-react';
 import { HiOutlineExclamationCircle, HiInformationCircle } from 'react-icons/hi'
 import { MdDelete, MdOutlineEdit } from "react-icons/md"
-import useAxiosPrivate from '../hooks/useAxiosPrivate'
-import useAuth from '../hooks/useAuth'
+import useAxiosPrivate from '../../hooks/useAxiosPrivate'
+import useAuth from '../../hooks/useAuth'
 import { jwtDecode } from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'
 
