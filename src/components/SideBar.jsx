@@ -19,14 +19,14 @@ const SideBar = () => {
         } bg-indigo-900 h-screen p-5  pt-8 relative duration-300`}
       >
         <img
-          src="../../src/assets/images/control.png"
+          src="/images/control.png"
           className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
          border-2 rounded-full  ${!open && "rotate-180"}`}
           onClick={() => setOpen(!open)}
         />
         <div className="flex gap-x-4 items-center">
           <img
-            src="../../vite.svg"
+            src="vite.svg"
             className={`cursor-pointer duration-500 ${
               open && "rotate-[360deg]"
             }`}
@@ -46,7 +46,7 @@ const SideBar = () => {
               className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
             ${Menu.gap ? "fixed bottom-20" : ""} ${Menu.gap2 ? "fixed bottom-10" : ""} ${Menu.gap3 ? "fixed bottom-0" : ""} ${index === 0 && "bg-light-white"} `}
             >
-              <img src={`../../src/assets/images/${Menu.src}.png`} />
+              <img src={`/images/${Menu.src}.png`} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 <Link to={`/${Menu.link}`} className="font-medium hover:underline">{Menu.title}</Link>
               </span>
