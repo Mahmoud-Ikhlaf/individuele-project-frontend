@@ -4,8 +4,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Stomp from 'stompjs';
 import SockJS from 'sockjs-client/dist/sockjs';
 import ColorButton from '../../components/ColorButton';
+import getWsUrl from '../../api/websockets';
 
 const PlayQuiz = () => {
+  const wsUrl = getWsUrl();
   const code = localStorage.getItem("quizCode");
   const {quizCode} = useParams();
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ const PlayQuiz = () => {
       navigate("/");
     } 
     
-    const socket = new SockJS('http://localhost:8081/ws');    
+    const socket = new SockJS(wsUrl);    
     const stompClient = Stomp.over(socket);
     stompClient.connect({}, () => {
       stompClientRef.current = stompClient;

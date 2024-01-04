@@ -5,9 +5,11 @@ import Stomp from 'stompjs';
 import SockJS from 'sockjs-client/dist/sockjs';
 import ColorButton from '../../components/ColorButton';
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Button } from 'flowbite-react';
+import getWsUrl from '../../api/websockets';
 
 const StartScreen = () => {
   const {id} = useParams();
+  const wsUrl = getWsUrl();
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
 
@@ -76,7 +78,7 @@ const StartScreen = () => {
     generateCode();
     getQuestions();
     
-    const socket = new SockJS('http://localhost:8081/ws');    
+    const socket = new SockJS(wsUrl);    
     const stompClient = Stomp.over(socket);
     stompClient.connect({}, () => {
       var code = localStorage.getItem("code");
@@ -166,7 +168,7 @@ const StartScreen = () => {
 
   const startQuiz = () => {
     localStorage.setItem("totalPlayers", Object.keys(players).length)
-    const socket = new SockJS('http://localhost:8081/ws');    
+    const socket = new SockJS(wsUrl);    
     stompClientRef.current = Stomp.over(socket);
     setButtonClicked(true);
   };
