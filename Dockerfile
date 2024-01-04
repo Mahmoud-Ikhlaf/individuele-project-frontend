@@ -9,7 +9,8 @@ COPY . .
 
 RUN npm run build
 RUN touch .env && \
-    echo VITE_DEV_API_URL="http://localhost:8080/api/v1" >> .env && \
+    echo VITE_PROD_RUNNER_WS_URL="http://api-runner.mahoot.tech/ws" >> .env && \
+    echo VITE_PROD_RUNNER_API_URL="http://api-runner.mahoot.tech" >> .env && \
     echo VITE_PROD_API_URL="http://api.mahoot.tech/api/v1" >> .env
     
 EXPOSE 5000

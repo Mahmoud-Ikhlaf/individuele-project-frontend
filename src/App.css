@@ -1,4 +1,10 @@
 #root {
-  max-width: 1280px;
+  max-width: 60%;
   margin: 0 auto;
+}
+
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
 }
