@@ -4,12 +4,14 @@ import Stomp from 'stompjs';
 import SockJS from 'sockjs-client/dist/sockjs';
 import { HiInformationCircle } from 'react-icons/hi'
 import { Alert } from 'flowbite-react';
+import getWsUrl from '../../api/websockets';
 
 const Home = () => {
   const [playerName, setPlayerName] = useState('');
   const [quizCode, setQuizCode] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const wsUrl = getWsUrl();
 
   const handleJoin = () => {
     if (typeof quizCode === "undefined" || quizCode.match("^[0-9]+$") === null) {
@@ -24,7 +26,7 @@ const Home = () => {
 
     setError("");
 
-    const socket = new SockJS('http://localhost:8081/ws');
+    const socket = new SockJS(wsUrl);
     const stompClient = Stomp.over(socket);
     stompClient.connect({}, () => {
         stompClient.send(`/app/join/${quizCode}`, {}, playerName);
