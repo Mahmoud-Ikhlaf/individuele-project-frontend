@@ -26,7 +26,7 @@ const SideBar = () => {
         />
         <div className="flex gap-x-4 items-center">
           <img
-            src="vite.svg"
+            src="/vite.svg"
             className={`cursor-pointer duration-500 ${
               open && "rotate-[360deg]"
             }`}
